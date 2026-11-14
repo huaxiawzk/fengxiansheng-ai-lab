@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fengyulu.cn/sitemap.xml

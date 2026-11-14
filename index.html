@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="冯先生 AI工程实验室：聚焦工程技术管理、项目协同与工程量全过程管理，探索人工智能在施工企业项目一线的实际应用。">
+  <meta name="keywords" content="冯先生,AI工程管理,施工企业数字化,工程量审核,项目管理小程序,工程技术管理">
+  <meta name="author" content="冯先生">
+  <meta name="theme-color" content="#0b1324">
+  <meta property="og:title" content="冯先生 AI工程实验室">
+  <meta property="og:description" content="来源于施工一线，服务于工程实践。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fengyulu.cn/">
+  <meta property="og:image" content="https://fengyulu.cn/assets/og-cover.svg">
+  <title>冯先生 AI工程实验室</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="返回首页">
+        <img src="assets/logo.svg" alt="" width="38" height="38">
+        <span>
+          <strong id="brandName">冯先生</strong>
+          <small id="brandSub">AI工程实验室</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="主导航"></nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 首屏 -->
+    <section class="hero section" id="home">
+      <div class="hero-glow hero-glow-a"></div>
+      <div class="hero-glow hero-glow-b"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow" id="heroEyebrow">AI FOR CONSTRUCTION ENGINEERING</div>
+          <h1 id="heroTitle"></h1>
+          <div class="featured-chip" id="featuredChip"></div>
+          <p class="hero-lead" id="heroLead"></p>
+          <div class="hero-actions" id="heroActions"></div>
+          <div class="hero-metrics" id="heroMetrics" aria-label="个人实践数据"></div>
+        </div>
+
+        <div class="hero-visual reveal" id="heroVisual" aria-label="三个小程序产品示意"></div>
+      </div>
+      <div class="container trusted-line reveal" id="trustedLine"></div>
+    </section>
+
+    <!-- 为什么开发 -->
+    <section class="story section" id="story">
+      <div class="container story-grid">
+        <div class="section-heading reveal">
+          <div class="eyebrow" id="storyEyebrow"></div>
+          <h2 id="storyTitle"></h2>
+          <p id="storyDesc"></p>
+        </div>
+        <div class="pain-grid" id="painGrid"></div>
+      </div>
+    </section>
+
+    <!-- 产品矩阵 -->
+    <section class="products section section-dark" id="products">
+      <div class="container">
+        <div class="section-heading center reveal">
+          <div class="eyebrow" id="prodEyebrow"></div>
+          <h2 id="prodTitle"></h2>
+          <p id="prodDesc"></p>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <!-- 应用能力 -->
+    <section class="capabilities section" id="capabilities">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow" id="capEyebrow"></div>
+          <h2 id="capTitle"></h2>
+          <p id="capDesc"></p>
+        </div>
+        <div class="capability-grid" id="capGrid"></div>
+      </div>
+    </section>
+
+    <!-- 数字化实践 -->
+    <section class="practice section section-soft" id="practice">
+      <div class="container practice-grid">
+        <div class="section-heading reveal">
+          <div class="eyebrow" id="pracEyebrow"></div>
+          <h2 id="pracTitle"></h2>
+          <p id="pracDesc"></p>
+          <div class="principles" id="principles"></div>
+        </div>
+        <div class="timeline reveal">
+          <div class="timeline-line"></div>
+          <div id="timelineItems"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section class="about section" id="about">
+      <div class="container about-grid">
+        <div class="about-card reveal">
+          <div class="portrait">
+            <img id="portraitImg" src="assets/avatar-placeholder.svg" alt="冯先生个人形象占位图">
+            <div class="portrait-note" id="portraitNote">可替换为个人职业照</div>
+          </div>
+          <div class="about-stats" id="aboutStats"></div>
+        </div>
+        <div class="about-copy reveal">
+          <div class="eyebrow" id="aboutEyebrow"></div>
+          <h2 id="aboutTitle"></h2>
+          <div id="aboutParas"></div>
+          <blockquote id="aboutQuote"></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- 联系 -->
+    <section class="contact section section-dark" id="contact">
+      <div class="container">
+        <div class="contact-head reveal">
+          <div>
+            <div class="eyebrow" id="contactEyebrow"></div>
+            <h2 id="contactTitle"></h2>
+            <p id="contactDesc"></p>
+          </div>
+          <a class="button button-light" id="mailBtn" href="mailto:908090170@qq.com">发送邮件</a>
+        </div>
+
+        <div class="qr-grid" id="qrGrid"></div>
+        <div class="contact-info reveal" id="contactInfo"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <div>
+        <a class="brand footer-brand" href="#top">
+          <img src="assets/logo.svg" alt="" width="34" height="34">
+          <span><strong id="footName"></strong><small id="footTagline"></small></span>
+        </a>
+      </div>
+      <div class="footer-right">
+        <nav aria-label="页脚导航" id="footNav"></nav>
+        <p id="footCopyright"></p>
+        <p class="disclaimer" id="footDisclaimer"></p>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="product-modal" id="product-modal" aria-labelledby="modal-title">
+    <div class="modal-inner">
+      <button class="modal-close" type="button" aria-label="关闭">×</button>
+      <div class="modal-icon"><img id="modal-icon" src="" alt=""></div>
+      <div class="eyebrow" id="modal-eyebrow"></div>
+      <h2 id="modal-title"></h2>
+      <p class="modal-summary" id="modal-summary"></p>
+      <div class="modal-columns">
+        <div><h3>主要功能</h3><ul id="modal-features"></ul></div>
+        <div><h3>开发初衷</h3><p id="modal-purpose"></p></div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="qr-modal" id="qr-modal" aria-labelledby="qr-modal-title">
+    <div class="modal-inner qr-modal-inner">
+      <button class="modal-close" type="button" aria-label="关闭">×</button>
+      <div class="qr-modal-img"><img id="qr-modal-img" src="" alt="小程序码"></div>
+      <h2 id="qr-modal-title"></h2>
+      <p class="modal-summary" id="qr-modal-sub"></p>
+      <p class="qr-modal-tip">打开微信 → 扫一扫 → 进入小程序</p>
+    </div>
+  </dialog>
+
+  <button class="back-top" type="button" aria-label="返回顶部">↑</button>
+  <script src="content/site.js"></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

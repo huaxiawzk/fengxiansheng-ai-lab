@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>内容后台 · 冯先生 AI工程实验室</title>
+<link rel="icon" href="../assets/favicon.svg">
+<style>
+:root{--gold:#c9a548;--gold-soft:#e7cf8c;--line:#2a2a2f;--ink:#0c0b10;--muted:#8e8778;--ok:#3ea36a;--warn:#c2571a}
+*{box-sizing:border-box}
+body{margin:0;background:#08080b;color:#ece5d7;font:14px/1.7 "PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:10;background:rgba(8,8,11,.88);backdrop-filter:blur(10px);border-bottom:1px solid #1c1c21}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:Georgia,"Songti SC",serif;letter-spacing:.14em;color:var(--gold-soft)}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer;border:1px solid #33333a;background:#14141a;color:#ddd6c6;padding:8px 16px;border-radius:4px;transition:.2s}
+button:hover{border-color:var(--gold);color:var(--gold-soft)}
+button.primary{background:linear-gradient(135deg,#d9b45c,#a8801f);color:#0a0a0c;border-color:transparent;font-weight:600}
+button.ghost{background:transparent}
+button.danger{color:#e08a6a;border-color:#4a2a20}
+.card{background:#0e0d12;border:1px solid #1e1e24;border-radius:6px;padding:18px 20px;margin:14px 0}
+.card.sub{background:#0b0a0f;border-color:#191920;padding:12px 16px;margin:12px 0}
+.card.sub h4{font-size:11px;margin-bottom:10px;letter-spacing:.14em}
+.card h4{margin:0 0 14px;font-size:13px;letter-spacing:.16em;color:var(--gold);font-weight:400}
+.row{display:grid;grid-template-columns:200px 1fr;gap:14px;align-items:start;margin-bottom:12px}
+@media(max-width:700px){.row{grid-template-columns:1fr}}
+.lab{font-size:12px;color:var(--muted);letter-spacing:.06em;padding-top:9px;word-break:break-all}
+input[type=text],textarea,input[type=number]{width:100%;background:#17171d;border:1px solid #2a2a31;color:#eee7d6;padding:9px 11px;border-radius:4px;font:inherit;resize:vertical}
+input:focus,textarea:focus{outline:none;border-color:var(--gold);background:#1b1b22}
+textarea{min-height:64px}
+.arr-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.arr-head .t{font-size:12px;color:var(--gold);letter-spacing:.12em}
+.arr-item{border-left:2px solid #26262d;padding-left:14px;margin:10px 0;position:relative}
+.arr-item .tools{display:flex;gap:6px;justify-content:flex-end;margin-bottom:6px}
+.arr-item .tools button{padding:3px 9px;font-size:11px}
+.note{font-size:12px;color:var(--muted);line-height:1.9}
+.status{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);padding:10px 20px;border-radius:4px;background:#14141a;border:1px solid #2c2c34;font-size:12.5px;display:none;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.status.show{display:block}
+.status.ok{border-color:#26543a;color:#7fdca0}
+.status.err{border-color:#54261c;color:#f0a184}
+details{margin:14px 0}
+summary{cursor:pointer;color:var(--muted);font-size:12px;letter-spacing:.08em}
+textarea.json{min-height:300px;font-family:ui-monospace,Consolas,monospace;font-size:12.5px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">内容后台 · 冯先生 AI工程实验室</div>
+    <div class="btns">
+      <button class="ghost" id="btnLoad">读取线上内容</button>
+      <button class="ghost" id="btnExport">导出 JSON</button>
+      <button class="primary" id="btnSave">保存并发布</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="card">
+    <h4>1 · 仓库连接（只需填一次，存在本机浏览器）</h4>
+    <div class="row"><div class="lab">GitHub 用户名 / 组织</div><input type="text" id="cfgOwner" placeholder="例如 huaxiawzk"></div>
+    <div class="row"><div class="lab">仓库名</div><input type="text" id="cfgRepo" placeholder="例如 restart-site"></div>
+    <div class="row"><div class="lab">分支</div><input type="text" id="cfgBranch" placeholder="main"></div>
+    <div class="row"><div class="lab">访问令牌 PAT</div><input type="text" id="cfgToken" placeholder="ghp_xxx（只需 repo 读写权限）"></div>
+    <div class="row"><div class="lab"></div><button class="ghost" id="btnSaveCfg">保存连接配置</button></div>
+    <p class="note">
+      · 令牌在这里只存在你本机浏览器，不随页面发布。<br>
+      · 生成方式：GitHub → Settings → Developer settings → Personal access tokens → Fine-grained，
+      只勾选该仓库的 <b>Contents: Read and write</b>。
+    </p>
+  </div>
+
+  <details>
+    <summary>原始 JSON（高级：批量粘贴 / 备份恢复）</summary>
+    <textarea class="json" id="rawJson" spellcheck="false"></textarea>
+    <div class="btns" style="margin-top:10px">
+      <button class="ghost" id="btnFromRaw">用上方 JSON 覆盖编辑器</button>
+      <button class="ghost" id="btnToRaw">把编辑器内容写入上方</button>
+    </div>
+  </details>
+
+  <div id="editorRoot"></div>
+
+  <div class="card">
+    <h4>2 · 图片资源</h4>
+    <p class="note">
+      图片按路径引用（如 <b>assets/qr-helper.svg</b> 或你上传后的 <b>assets/uploads/xxx.png</b>）。换图有两种方式：<br>
+      · 直接把新图覆盖到仓库 <b>assets/</b> 同名文件（沿用原文件名即立刻生效，无需改文案）；<br>
+      · 或上传新图到 <b>assets/uploads/</b>，再把内容里的路径改成该文件路径。
+    </p>
+    <div class="btns" style="margin-top:12px">
+      <input type="file" id="fileUp" accept="image/*" style="color:var(--muted);font-size:12px">
+      <button class="ghost" id="btnUpload">上传到 assets/uploads/</button>
+    </div>
+  </div>
+
+  <p class="note" style="padding-bottom:40px">
+    保存后 GitHub 会自动触发一次重新部署，约 1 分钟线上生效。若只是改文案，可直接刷新首页看结果。
+  </p>
+</div>
+
+<div class="status" id="status"></div>
+
+<script>
+(function(){
+  "use strict";
+  var CFG_KEY = "rs_admin_cfg_v1";
+  var state = { data: null, sha: null, cfg: {} };
+
+  var $ = function(id){ return document.getElementById(id); };
+  function status(msg, kind){
+    var n = $("status");
+    n.textContent = msg;
+    n.className = "status show" + (kind ? " " + kind : "");
+    clearTimeout(status._t);
+    status._t = setTimeout(function(){ n.className = "status"; }, 4200);
+  }
+
+  /* ---------- 编解码 ---------- */
+  function b64enc(str){
+    var bytes = new TextEncoder().encode(str);
+    var bin = "";
+    for (var i=0;i<bytes.length;i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin);
+  }
+  function b64dec(b64){
+    var bin = atob(String(b64).replace(/\s/g,""));
+    var bytes = new Uint8Array(bin.length);
+    for (var i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder("utf-8").decode(bytes);
+  }
+
+  /* ---------- 配置 ---------- */
+  function loadCfg(){
+    try { state.cfg = JSON.parse(localStorage.getItem(CFG_KEY) || "{}"); } catch(e){ state.cfg = {}; }
+    $("cfgOwner").value = state.cfg.owner || "";
+    $("cfgRepo").value  = state.cfg.repo || "";
+    $("cfgBranch").value= state.cfg.branch || "main";
+    $("cfgToken").value = state.cfg.token || "";
+  }
+  function saveCfg(){
+    state.cfg = {
+      owner: $("cfgOwner").value.trim(),
+      repo: $("cfgRepo").value.trim(),
+      branch: $("cfgBranch").value.trim() || "main",
+      token: $("cfgToken").value.trim()
+    };
+    localStorage.setItem(CFG_KEY, JSON.stringify(state.cfg));
+    status("连接配置已保存到本机", "ok");
+  }
+  function apiReady(){
+    return state.cfg.owner && state.cfg.repo && state.cfg.token;
+  }
+  function apiUrl(){
+    return "https://api.github.com/repos/" + state.cfg.owner + "/" + state.cfg.repo +
+           "/contents/content/site.json?ref=" + encodeURIComponent(state.cfg.branch);
+  }
+  function headers(){
+    return { "Authorization": "token " + state.cfg.token, "Accept": "application/vnd.github+json" };
+  }
+
+  /* ---------- 读取 ---------- */
+  function loadRemote(){
+    if (!apiReady()) { status("请先填写并保存仓库连接配置", "err"); return; }
+    status("正在读取线上内容…");
+    fetch(apiUrl(), { headers: headers(), cache: "no-store" })
+      .then(function(r){ if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+      .then(function(j){
+        state.sha = j.sha;
+        state.data = JSON.parse(b64dec(j.content));
+        renderEditor();
+        status("已读取线上内容（sha " + j.sha.slice(0,7) + "）", "ok");
+      })
+      .catch(function(e){ status("读取失败：" + e.message + "（也可先用默认内容编辑）", "err"); });
+  }
+
+  function loadLocal(){
+    fetch("../content/site.json", { cache: "no-store" })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ if (j) { state.data = j; renderEditor(); } })
+      .catch(function(){});
+  }
+
+  /* ---------- 编辑器 ---------- */
+  function getRoot(){ return state.data; }
+
+  function field(key, val, onChange){
+    var row = document.createElement("div"); row.className = "row";
+    var lab = document.createElement("div"); lab.className = "lab"; lab.textContent = key;
+    row.appendChild(lab);
+
+    var box = document.createElement("div");
+    var v = val;
+    if (typeof v === "boolean") {
+      var cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = v;
+      cb.addEventListener("change", function(){ onChange(cb.checked); });
+      box.appendChild(cb);
+    } else if (typeof v === "number") {
+      var ni = document.createElement("input"); ni.type = "number"; ni.value = v;
+      ni.addEventListener("input", function(){ onChange(Number(ni.value) || 0); });
+      box.appendChild(ni);
+    } else if (typeof v === "string") {
+      var long = v.length > 70 || v.indexOf("\n") > -1;
+      var ta = document.createElement(long ? "textarea" : "input");
+      if (!long) ta.type = "text";
+      ta.value = v;
+      ta.addEventListener("input", function(){ onChange(ta.value); });
+      box.appendChild(ta);
+      if (long) {
+        var cnt = document.createElement("div"); cnt.className = "note";
+        cnt.textContent = v.length + " 字";
+        ta.addEventListener("input", function(){ cnt.textContent = ta.value.length + " 字"; });
+        box.appendChild(cnt);
+      }
+    }
+    row.appendChild(box);
+    return row;
+  }
+
+  function renderObject(obj, container, name, onChange, sub){
+    var card = document.createElement("div");
+    card.className = "card" + (sub ? " sub" : "");
+    var h = document.createElement("h4"); h.textContent = name || "内容";
+    card.appendChild(h);
+    Object.keys(obj).forEach(function(k){
+      var v = obj[k];
+      if (v && typeof v === "object" && !Array.isArray(v)) {
+        card.appendChild(renderObject(v, null, k, onChange, true));
+      } else if (Array.isArray(v)) {
+        card.appendChild(renderArray(v, k, onChange));
+      } else {
+        card.appendChild(field(k, v, function(nv){ obj[k] = nv; if (onChange) onChange(); }));
+      }
+    });
+    if (container) container.appendChild(card);
+    return card;
+  }
+
+  function renderArray(arr, key, onChange){
+    var box = document.createElement("div");
+    var head = document.createElement("div"); head.className = "arr-head";
+    var t = document.createElement("div"); t.className = "t"; t.textContent = key + " · 共 " + arr.length + " 项";
+    var addBtn = document.createElement("button"); addBtn.className = "ghost"; addBtn.textContent = "+ 添加一项";
+    addBtn.addEventListener("click", function(){
+      var tpl = arr.length ? arr[arr.length-1] : "";
+      var clone = (tpl && typeof tpl === "object") ? JSON.parse(JSON.stringify(tpl)) : (typeof tpl === "string" ? "" : "");
+      // 清空文本值，方便直接填
+      if (clone && typeof clone === "object") { Object.keys(clone).forEach(function(k){ if (typeof clone[k] === "string") clone[k] = ""; }); }
+      arr.push(clone);
+      refresh();
+      onChange && onChange();
+    });
+    head.appendChild(t); head.appendChild(addBtn);
+    box.appendChild(head);
+
+    arr.forEach(function(item, i){
+      var wrap = document.createElement("div"); wrap.className = "arr-item";
+      var tools = document.createElement("div"); tools.className = "tools";
+      var up = document.createElement("button"); up.textContent = "上移";
+      up.addEventListener("click", function(){ if(i>0){ var x=arr[i-1]; arr[i-1]=arr[i]; arr[i]=x; refresh(); onChange&&onChange(); } });
+      var dn = document.createElement("button"); dn.textContent = "下移";
+      dn.addEventListener("click", function(){ if(i<arr.length-1){ var x=arr[i+1]; arr[i+1]=arr[i]; arr[i]=x; refresh(); onChange&&onChange(); } });
+      var del = document.createElement("button"); del.className = "danger"; del.textContent = "删除";
+      del.addEventListener("click", function(){ if(confirm("确认删除这一项？")){ arr.splice(i,1); refresh(); onChange&&onChange(); } });
+      tools.appendChild(up); tools.appendChild(dn); tools.appendChild(del);
+      wrap.appendChild(tools);
+
+      if (item && typeof item === "object" && !Array.isArray(item)) {
+        Object.keys(item).forEach(function(k){
+          wrap.appendChild(field(k, item[k], function(nv){ item[k] = nv; onChange&&onChange(); }));
+        });
+      } else {
+        var inp = document.createElement("input"); inp.type = "text"; inp.value = item;
+        inp.addEventListener("input", function(){ arr[i] = inp.value; onChange&&onChange(); });
+        wrap.appendChild(inp);
+      }
+      box.appendChild(wrap);
+    });
+
+    function refresh(){ renderEditor(); }
+    return box;
+  }
+
+  function renderEditor(){
+    var root = $("editorRoot");
+    root.innerHTML = "";
+    if (!state.data) {
+      var empty = document.createElement("div"); empty.className = "card";
+      empty.innerHTML = '<p class="note">还没有内容。点右上「读取线上内容」拉取，或点下面按钮用默认内容开始编辑。</p>';
+      var b = document.createElement("button"); b.className = "ghost"; b.textContent = "载入本地默认内容";
+      b.addEventListener("click", loadLocal);
+      empty.appendChild(b);
+      root.appendChild(empty);
+      return;
+    }
+    root.appendChild(renderObject(state.data, null, "站点内容", function(){}));
+    $("btnToRaw") && null;
+  }
+
+  /* ---------- 保存 ---------- */
+  function putFile(path, text, msg){
+    return fetch("https://api.github.com/repos/" + state.cfg.owner + "/" + state.cfg.repo + "/contents/" + path, {
+      method: "PUT",
+      headers: headers(),
+      body: JSON.stringify({ message: msg, content: b64enc(text), branch: state.cfg.branch, sha: null })
+    }).then(function(r){
+      if (!r.ok) return r.text().then(function(t){ throw new Error(path + " 保存失败 " + r.status + " " + t.slice(0,200)); });
+      return r.json();
+    });
+  }
+
+  // 带 sha 的更新（已存在文件必须带 sha）
+  function putFileUpsert(path, text, msg){
+    var url = "https://api.github.com/repos/" + state.cfg.owner + "/" + state.cfg.repo + "/contents/" + path + "?ref=" + encodeURIComponent(state.cfg.branch);
+    return fetch(url, { headers: headers(), cache: "no-store" })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .catch(function(){ return null; })
+      .then(function(meta){
+        var body = { message: msg, content: b64enc(text), branch: state.cfg.branch };
+        if (meta && meta.sha) body.sha = meta.sha;
+        return fetch("https://api.github.com/repos/" + state.cfg.owner + "/" + state.cfg.repo + "/contents/" + path, {
+          method: "PUT", headers: headers(), body: JSON.stringify(body)
+        });
+      })
+      .then(function(r){
+        if (!r.ok) return r.text().then(function(t){ throw new Error(path + " 保存失败 " + r.status + " " + t.slice(0,200)); });
+        return r.json();
+      });
+  }
+
+  function save(){
+    if (!state.data) { status("没有可保存的内容", "err"); return; }
+    if (!apiReady()) { status("请先填写并保存仓库连接配置", "err"); return; }
+    var jsonText = JSON.stringify(state.data, null, 2);
+    var jsText = "/* 由 content/site.json 生成，后台保存时会自动同步；请勿手工编辑此文件 */\nwindow.SITE_CONTENT = " + jsonText + ";\n";
+    status("正在提交…");
+    putFileUpsert("content/site.json", jsonText, "content: 更新站点内容")
+      .then(function(){ return putFileUpsert("content/site.js", jsText, "content: 同步 site.js"); })
+      .then(function(){ status("已发布。约 1 分钟后自动重新部署生效。", "ok"); })
+      .catch(function(e){ status(e.message, "err"); });
+  }
+
+  /* ---------- 图片上传 ---------- */
+  function uploadImage(){
+    var f = $("fileUp").files[0];
+    if (!f) { status("请先选择图片", "err"); return; }
+    if (!apiReady()) { status("请先填写并保存仓库连接配置", "err"); return; }
+    var name = Date.now().toString(36) + "-" + f.name.replace(/[^\w.\-\u4e00-\u9fa5]/g, "_");
+    var reader = new FileReader();
+    reader.onload = function(){
+      var dataUrl = reader.result;
+      var b64 = String(dataUrl).split(",")[1];
+      var path = "assets/uploads/" + name;
+      status("上传中…");
+      fetch("https://api.github.com/repos/" + state.cfg.owner + "/" + state.cfg.repo + "/contents/" + path, {
+        method: "PUT", headers: headers(),
+        body: JSON.stringify({ message: "assets: 上传图片 " + name, content: b64, branch: state.cfg.branch })
+      }).then(function(r){
+        if (!r.ok) return r.text().then(function(t){ throw new Error("上传失败 " + r.status + " " + t.slice(0,150)); });
+        status("已上传：" + path + "（把内容里的图片路径改成它即可）", "ok");
+      }).catch(function(e){ status(e.message, "err"); });
+    };
+    reader.readAsDataURL(f);
+  }
+
+  /* ---------- 绑定 ---------- */
+  $("btnSaveCfg").addEventListener("click", saveCfg);
+  $("btnLoad").addEventListener("click", function(){ saveCfg(); loadRemote(); });
+  $("btnSave").addEventListener("click", function(){ saveCfg(); save(); });
+  $("btnUpload").addEventListener("click", uploadImage);
+
+  $("btnExport").addEventListener("click", function(){
+    if (!state.data) return;
+    var blob = new Blob([JSON.stringify(state.data, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "site-" + new Date().toISOString().slice(0,10) + ".json";
+    a.click();
+  });
+
+  $("btnFromRaw").addEventListener("click", function(){
+    try {
+      state.data = JSON.parse($("rawJson").value);
+      renderEditor();
+      status("已用 JSON 覆盖编辑器", "ok");
+    } catch(e) { status("JSON 格式有误：" + e.message, "err"); }
+  });
+  $("btnToRaw").addEventListener("click", function(){
+    if (state.data) { $("rawJson").value = JSON.stringify(state.data, null, 2); status("已写入", "ok"); }
+  });
+
+  loadCfg();
+  loadLocal();
+  var tick = setInterval(function(){
+    if (state.data) { $("rawJson").value = JSON.stringify(state.data, null, 2); clearInterval(tick); }
+  }, 300);
+})();
+</script>
+</body>
+</html>

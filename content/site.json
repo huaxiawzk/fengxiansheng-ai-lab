@@ -1,0 +1,393 @@
+{
+  "seo": {
+    "title": "冯先生 AI工程实验室",
+    "description": "冯先生 AI工程实验室：聚焦工程技术管理、项目协同与工程量全过程管理，探索人工智能在施工企业项目一线的实际应用。",
+    "keywords": "冯先生,AI工程管理,施工企业数字化,工程量审核,项目管理小程序,工程技术管理",
+    "author": "冯先生",
+    "url": "https://fengyulu.cn/",
+    "ogTitle": "冯先生 AI工程实验室",
+    "ogDesc": "来源于施工一线，服务于工程实践。",
+    "ogImage": "assets/og-cover.svg",
+    "themeColor": "#0b1324"
+  },
+  "brand": {
+    "logo": "assets/logo.svg",
+    "name": "冯先生",
+    "sub": "AI工程实验室",
+    "footerName": "冯先生 AI工程实验室",
+    "footerTagline": "来源于施工一线 · 服务于工程实践"
+  },
+  "nav": [
+    {
+      "label": "首页",
+      "href": "#home"
+    },
+    {
+      "label": "产品中心",
+      "href": "#products"
+    },
+    {
+      "label": "应用能力",
+      "href": "#capabilities"
+    },
+    {
+      "label": "数字化实践",
+      "href": "#practice"
+    },
+    {
+      "label": "关于我",
+      "href": "#about"
+    },
+    {
+      "label": "联系我",
+      "href": "#contact",
+      "cta": true
+    }
+  ],
+  "hero": {
+    "eyebrow": "AI FOR CONSTRUCTION ENGINEERING",
+    "title": "把施工现场",
+    "titleHighlight": "装进一个入口",
+    "lead": "聚焦工程技术管理、项目协同与工程量全过程管理，将一线经验、业务流程和项目数据沉淀为可复用的数字资产。",
+    "featured": {
+      "badge": "主推产品",
+      "name": "冯先生的小助手",
+      "position": "项目全过程协同平台",
+      "desc": "进度、检查、整改、人员、机械、材料与资料，一个入口闭环。"
+    },
+    "actions": [
+      {
+        "label": "扫码进入小助手",
+        "href": "#qr",
+        "style": "primary"
+      },
+      {
+        "label": "查看三个产品",
+        "href": "#products",
+        "style": "secondary"
+      }
+    ],
+    "metrics": [
+      {
+        "num": "14+",
+        "label": "年工程管理经历"
+      },
+      {
+        "num": "3",
+        "label": "款工程数字化产品"
+      },
+      {
+        "num": "10+",
+        "label": "参与工程项目"
+      }
+    ],
+    "trusted": [
+      "来源于施工一线",
+      "服务于工程实践",
+      "面向企业数字化转型"
+    ]
+  },
+  "story": {
+    "eyebrow": "WHY I BUILD",
+    "title": "为什么开发这些产品？",
+    "desc": "不是为了做一个“看起来很先进”的软件，而是为了解决工程项目一线每天真实发生的问题。",
+    "pains": [
+      {
+        "num": "01",
+        "title": "资料多而分散",
+        "text": "方案、交底、台账、照片和会议纪要分布在电脑、手机与微信群中。"
+      },
+      {
+        "num": "02",
+        "title": "重复劳动较多",
+        "text": "同类资料反复编写，工程数据重复录入，人员精力被低价值工作消耗。"
+      },
+      {
+        "num": "03",
+        "title": "经验难以沉淀",
+        "text": "优秀项目经验依赖个人保存，人员流动后容易出现知识断层。"
+      },
+      {
+        "num": "04",
+        "title": "工程量难追溯",
+        "text": "多版本Excel、不同统计口径与复杂结算资料增加审核难度和风险。"
+      }
+    ]
+  },
+  "products": {
+    "eyebrow": "PRODUCT MATRIX",
+    "title": "三个产品，一套工程数字化思路",
+    "desc": "分别解决技术管理、项目协同与工程量审核问题，共同构成来源于项目一线的数字化应用体系。",
+    "items": [
+      {
+        "key": "assistant",
+        "number": "01",
+        "title": "冯先生的助手",
+        "position": "AI工程技术管理平台",
+        "icon": "assets/product-assistant.svg",
+        "desc": "围绕施工方案、技术交底、知识库、施工计划、危大工程、检查整改和资料管理，帮助工程技术人员提高工作效率。",
+        "tags": [
+          "AI文件生成",
+          "知识库",
+          "施工计划",
+          "危大工程",
+          "资料管理",
+          "整改闭环"
+        ],
+        "detailLabel": "查看详细功能",
+        "detail": {
+          "eyebrow": "AI ENGINEERING MANAGEMENT",
+          "summary": "面向工程技术人员的AI工程技术管理平台，覆盖技术文件、知识库、施工计划、危大工程和资料管理等业务。",
+          "features": [
+            "施工方案、技术交底、会议纪要等文件辅助编制",
+            "项目资料分类、归档与检索",
+            "项目知识库与AI知识问答",
+            "施工计划解析与进度分析",
+            "危大工程全过程管理",
+            "检查整改闭环及多项目管理"
+          ],
+          "purpose": "减少工程技术人员在重复性资料编制和信息查找上的时间投入，将优秀项目经验逐步沉淀为可复用的知识资产，让人工智能真正成为工程技术人员的日常工作助手。"
+        }
+      },
+      {
+        "key": "little-helper",
+        "number": "02",
+        "featured": true,
+        "badge": "综合协同 · 主推",
+        "title": "冯先生的小助手",
+        "position": "项目全过程协同平台",
+        "icon": "assets/product-little-helper.svg",
+        "desc": "把进度、检查、整改、人员、机械、材料、劳务和资料等日常管理事项汇聚到移动端，推动项目管理形成闭环。",
+        "tags": [
+          "项目工作台",
+          "现场管理",
+          "检查整改",
+          "人员劳务",
+          "消息协同",
+          "数据统计"
+        ],
+        "detailLabel": "查看详细功能",
+        "detail": {
+          "eyebrow": "PROJECT COLLABORATION",
+          "summary": "面向施工项目全过程管理的综合协同平台，将项目日常业务汇聚到移动端，推动工作有记录、问题有跟踪、整改有闭环。",
+          "features": [
+            "项目工作台和多项目管理",
+            "施工进度上报与节点跟踪",
+            "现场问题拍照记录",
+            "人员、机械、材料及劳务管理",
+            "检查整改与消息提醒",
+            "资料归档和数据统计分析"
+          ],
+          "purpose": "解决传统项目管理依赖微信群、纸质记录和分散Excel造成的信息断层、责任不清和重复填报问题，提升项目协同效率与执行能力。"
+        }
+      },
+      {
+        "key": "quantity",
+        "number": "03",
+        "title": "冯先生的审量助手",
+        "position": "工程量全过程管理平台",
+        "icon": "assets/product-quantity.svg",
+        "desc": "统一管理工程量版本、五量数据、计量结算、合同外工程和变更资料，通过规则校验和异常提示辅助工程量审核。",
+        "tags": [
+          "Excel解析",
+          "五量分析",
+          "版本管理",
+          "结算审核",
+          "变更归集",
+          "风险提示"
+        ],
+        "detailLabel": "查看详细功能",
+        "detail": {
+          "eyebrow": "QUANTITY MANAGEMENT",
+          "summary": "面向工程量全过程管理与分包结算审核的数字化工具，为工程技术人员和预算人员提供数据整理、对比分析和风险辅助识别。",
+          "features": [
+            "工程量Excel导入与解析",
+            "工程量版本管理",
+            "中标量、图纸量等五量对比",
+            "对上计量与对下结算管理",
+            "合同外工程和设计变更归集",
+            "重复、异常及超范围计量提示"
+          ],
+          "purpose": "统一分散在合同清单、图纸计算书、责任预算、计量报表和分包结算文件中的工程量数据，通过规则校验、多版本对比和异常提示提高审核效率与可追溯性。"
+        }
+      }
+    ]
+  },
+  "capabilities": {
+    "eyebrow": "CORE CAPABILITIES",
+    "title": "AI赋能工程管理的六类能力",
+    "desc": "从单点工具切入，逐步形成数据沉淀、知识复用、业务协同和风险辅助识别能力。",
+    "items": [
+      {
+        "icon": "assets/icon-document.svg",
+        "title": "技术文件智能辅助",
+        "text": "辅助编制施工方案、技术交底、会议纪要、日报周报和整改回复。"
+      },
+      {
+        "icon": "assets/icon-quantity.svg",
+        "title": "工程量全过程管理",
+        "text": "支持数据导入、版本管理、五量对比、计量结算和异常工程量识别。"
+      },
+      {
+        "icon": "assets/icon-knowledge.svg",
+        "title": "项目知识库",
+        "text": "将资料、经验、标准和案例沉淀为可检索、可问答、可复用的知识资产。"
+      },
+      {
+        "icon": "assets/icon-plan.svg",
+        "title": "施工计划分析",
+        "text": "解析计划节点、跟踪完成情况、识别滞后任务并辅助形成推进建议。"
+      },
+      {
+        "icon": "assets/icon-collab.svg",
+        "title": "项目移动协同",
+        "text": "支持现场记录、任务分派、整改闭环、消息提醒和多角色协同管理。"
+      },
+      {
+        "icon": "assets/icon-data.svg",
+        "title": "数据统计与决策辅助",
+        "text": "将分散业务数据转化为统计结果、趋势分析和管理风险提示。"
+      }
+    ]
+  },
+  "practice": {
+    "eyebrow": "DIGITAL PRACTICE",
+    "title": "从项目问题出发，持续迭代",
+    "desc": "坚持“小切口、真场景、可落地”的研发思路，不追求脱离业务的复杂功能。",
+    "principles": [
+      {
+        "num": "01",
+        "title": "来源于一线",
+        "text": "每个功能都对应真实管理需求。"
+      },
+      {
+        "num": "02",
+        "title": "服务于一线",
+        "text": "优先降低工程人员的使用门槛。"
+      },
+      {
+        "num": "03",
+        "title": "沉淀为资产",
+        "text": "将经验、流程与数据转化为企业数字资产。"
+      }
+    ],
+    "timeline": [
+      {
+        "tag": "探索",
+        "title": "研究AI与工程管理融合",
+        "text": "梳理项目一线高频、重复、易出错的工作场景。"
+      },
+      {
+        "tag": "落地",
+        "title": "开发工程管理小程序",
+        "text": "将方案、资料、协同、工程量等业务逐步搬到移动端。"
+      },
+      {
+        "tag": "完善",
+        "title": "构建三类产品矩阵",
+        "text": "形成技术管理、综合协同、审量管理三条产品线。"
+      },
+      {
+        "tag": "未来",
+        "title": "探索工程AI数字员工",
+        "text": "推动知识、数据与业务流程进一步融合，为企业管理提供支撑。"
+      }
+    ]
+  },
+  "about": {
+    "portrait": "assets/avatar-placeholder.svg",
+    "portraitNote": "可替换为个人职业照",
+    "stats": [
+      {
+        "num": "14+",
+        "label": "年行业经验"
+      },
+      {
+        "num": "3",
+        "label": "款数字化产品"
+      },
+      {
+        "num": "持续",
+        "label": "迭代更新"
+      }
+    ],
+    "eyebrow": "ABOUT ME",
+    "title": "一名来自施工一线的",
+    "titleHighlight": "工程管理数字化实践者",
+    "paragraphs": [
+      "我是冯先生，长期从事施工项目工程技术管理，先后参与道路、桥梁、隧道、房建及市政工程建设。",
+      "在项目管理过程中，我持续思考如何减少重复劳动、统一管理标准、沉淀项目经验并提前识别风险。基于这些需求，我利用业余时间研究人工智能、微信小程序和数字化管理工具，先后开发三个工程管理应用。",
+      "我希望这些实践不只服务于个人，而是逐步形成可复制、可推广的项目一线数字化方案，为施工企业数字化转型贡献实际经验。"
+    ],
+    "quote": "“数字化转型不应只停留在概念上，而应从项目一线最具体的问题开始。”"
+  },
+  "contact": {
+    "eyebrow": "CONTACT & EXPERIENCE",
+    "title": "欢迎交流工程数字化实践",
+    "desc": "三个小程序仍在持续迭代，欢迎围绕工程技术管理、项目协同、工程量审核和企业数字化转型开展交流。",
+    "mailButton": {
+      "label": "发送邮件",
+      "href": "mailto:908090170@qq.com"
+    },
+    "qrCards": [
+      {
+        "img": "assets/qr-little-helper.svg",
+        "title": "冯先生的小助手",
+        "sub": "项目全过程协同平台",
+        "note": "请替换为真实小程序码",
+        "primary": true
+      },
+      {
+        "img": "assets/qr-assistant.svg",
+        "title": "冯先生的助手",
+        "sub": "AI工程技术管理平台",
+        "note": "请替换为真实小程序码"
+      },
+      {
+        "img": "assets/qr-quantity.svg",
+        "title": "冯先生的审量助手",
+        "sub": "工程量全过程管理平台",
+        "note": "请替换为真实小程序码"
+      }
+    ],
+    "contactInfo": [
+      {
+        "label": "邮箱",
+        "value": "908090170@qq.com",
+        "href": "mailto:908090170@qq.com"
+      },
+      {
+        "label": "电话",
+        "value": "+86 156-5666-5663",
+        "href": "tel:+8615656655663"
+      },
+      {
+        "label": "网站",
+        "value": "fengyulu.cn",
+        "href": "https://fengyulu.cn/"
+      }
+    ]
+  },
+  "footer": {
+    "nav": [
+      {
+        "label": "产品",
+        "href": "#products"
+      },
+      {
+        "label": "实践",
+        "href": "#about"
+      },
+      {
+        "label": "关于",
+        "href": "#about"
+      },
+      {
+        "label": "联系",
+        "href": "#contact"
+      }
+    ],
+    "copyright": "Copyright © 2026 冯先生 AI工程实验室",
+    "disclaimer": "本网站展示内容为个人工程数字化研发与实践成果。"
+  }
+}
