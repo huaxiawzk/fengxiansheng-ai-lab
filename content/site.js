@@ -332,23 +332,23 @@ window.SITE_CONTENT = {
     },
     "qrCards": [
       {
-        "img": "assets/qr-little-helper.svg",
+        "img": "assets/uploads/mwfxte18-小程序码.png",
         "title": "冯先生的小助手",
         "sub": "项目全过程协同平台",
-        "note": "请替换为真实小程序码",
+        "note": "",
         "primary": true
       },
       {
-        "img": "assets/qr-assistant.svg",
+        "img": "assets/uploads/mwfxte18-小程序码.png",
         "title": "冯先生的助手",
         "sub": "AI工程技术管理平台",
-        "note": "请替换为真实小程序码"
+        "note": ""
       },
       {
-        "img": "assets/qr-quantity.svg",
+        "img": "assets/uploads/mwfxte18-小程序码.png",
         "title": "冯先生的审量助手",
         "sub": "工程量全过程管理平台",
-        "note": "请替换为真实小程序码"
+        "note": ""
       }
     ],
     "contactInfo": [
@@ -391,5 +391,4 @@ window.SITE_CONTENT = {
     "copyright": "Copyright © 2026 冯先生 AI工程实验室",
     "disclaimer": "本网站展示内容为个人工程数字化研发与实践成果。"
   }
-}
-;
+};
