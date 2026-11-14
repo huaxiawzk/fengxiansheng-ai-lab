@@ -296,8 +296,8 @@ window.SITE_CONTENT = {
     ]
   },
   "about": {
-    "portrait": "assets/avatar-placeholder.svg",
-    "portraitNote": "可替换为个人职业照",
+    "portrait": "assets/uploads/mwfxxiwc-冯先生AI工程实验室头像.png",
+    "portraitNote": "",
     "stats": [
       {
         "num": "14+",
