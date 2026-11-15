@@ -123,7 +123,7 @@ window.SITE_CONTENT = {
       {
         "key": "assistant",
         "number": "01",
-        "title": "冯先生的助手",
+        "title": "冯先生的助手（已暂停）",
         "position": "AI工程技术管理平台",
         "icon": "assets/product-assistant.svg",
         "desc": "围绕施工方案、技术交底、知识库、施工计划、危大工程、检查整改和资料管理，帮助工程技术人员提高工作效率。",
@@ -185,7 +185,7 @@ window.SITE_CONTENT = {
       {
         "key": "quantity",
         "number": "03",
-        "title": "冯先生的审量助手",
+        "title": "冯先生的审量助手（已暂停）",
         "position": "工程量全过程管理平台",
         "icon": "assets/product-quantity.svg",
         "desc": "统一管理工程量版本、五量数据、计量结算、合同外工程和变更资料，通过规则校验和异常提示辅助工程量审核。",
